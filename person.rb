@@ -23,4 +23,8 @@ class Person
       is_of_age? || @parent_permission
     end
   end
-  
+
+  person = Person.new(22, name: "John", parent_permission: false)
+  puts person.name # prints "John"
+  puts person.age # prints 22
+  puts person.can_use_services? # prints true
