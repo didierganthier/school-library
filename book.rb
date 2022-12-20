@@ -10,7 +10,7 @@ class Book
   end
 
   def add_rental(person, date)
-    # *the book itself should be sent as a parameter to create the new rental achieving the 'has-many' association. 
+    # *the book itself should be sent as a parameter to create the new rental achieving the 'has-many' association.
     Rental.new(date, self, person)
   end
 end
