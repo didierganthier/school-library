@@ -17,15 +17,16 @@ class Person < Nameable
     @rentals = []
   end
 
-  def add_rental(book, date)
+  def add_rental(book)
     # *The person itself should be sent as a parameter to create the new rental achieving the 'has-many' association
-    Rental.new(date, book, self)
+    @rentals.push(book)
+    rentals.person = self
   end
 
   private
 
   def generate_id
-    # code to generate unique id
+    @id = Random.rand(1..1000)
   end
 
   def of_age?
