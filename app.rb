@@ -42,7 +42,7 @@ class App
       if action == :break
         break
       elsif action
-        self.send(action)
+        send(action)
       else
         puts 'Invalid number, please try again!'
       end
