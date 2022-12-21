@@ -5,12 +5,12 @@ require_relative './book'
 require_relative './rental'
 
 ACTIONS = {
-  1 => method(:list_books),
-  2 => method(:list_people),
-  3 => method(:create_person),
-  4 => method(:create_book),
-  5 => method(:create_rental),
-  6 => method(:list_rentals),
+  1 => :list_books,
+  2 => :list_people,
+  3 => :create_person,
+  4 => :create_book,
+  5 => :create_rental,
+  6 => :list_rentals,
   7 => :break
 }.freeze
 
@@ -42,7 +42,7 @@ class App
       if action == :break
         break
       elsif action
-        action.call
+        self.send(action)
       else
         puts 'Invalid number, please try again!'
       end
