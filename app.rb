@@ -4,6 +4,16 @@ require_relative './teacher'
 require_relative './book'
 require_relative './rental'
 
+ACTIONS = {
+  1 => method(:list_books),
+  2 => method(:list_people),
+  3 => method(:create_person),
+  4 => method(:create_book),
+  5 => method(:create_rental),
+  6 => method(:list_rentals),
+  7 => :break
+}.freeze
+
 class App
   def print_question
     puts 'Welcome to School library App! 🏫📚'
@@ -26,16 +36,13 @@ class App
   def select_option
     loop do
       print_question
-      option = gets.chomp
-      option = option.to_i
-      case option
-      when 1 then list_books
-      when 2 then list_people
-      when 3 then create_person
-      when 4 then create_book
-      when 5 then create_rental
-      when 6 then list_rentals
-      when 7 then break
+      option = gets.chomp.to_i
+      action = ACTIONS[option]
+
+      if action == :break
+        break
+      elsif action
+        action.call
       else
         puts 'Invalid number, please try again!'
       end
@@ -44,12 +51,10 @@ class App
 
   def create_person
     print 'Do you want to create a student (1) or a teacher (2)? [input the number]'
-    num = gets.chomp
-    num = num.to_i
+    num = gets.chomp.to_i
 
     print 'age:'
-    age = gets.chomp
-    age = age.to_i
+    age = gets.chomp.to_i
 
     print 'Name:'
     name = gets.chomp
@@ -58,10 +63,7 @@ class App
     when 1
       print 'Has parent permission? [y/n]:'
       parent_permission = gets.chomp
-      case parent_permission
-      when 'y' then parent_permission = true
-      when 'n' then parent_permission = false
-      end
+      parent_permission = parent_permission == 'y'
       @person.push(Student.new(age, name, parent_permission: parent_permission))
     when 2
       print 'Specialization:'

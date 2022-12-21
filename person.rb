@@ -17,7 +17,7 @@ class Person < Nameable
     @rentals = []
   end
 
-  def add_rental(book, date)
+  def add_rental(book)
     # *The person itself should be sent as a parameter to create the new rental achieving the 'has-many' association
     @rentals.push(book)
     rentals.person = self
