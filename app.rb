@@ -116,14 +116,14 @@ class App
     puts 'Rental Created successfully 📝 '
   end
 
+  # List all rentals for a given person id
   def list_rentals
     print 'Id of person:'
-    id_person = gets.chomp
-    id_person = id_person.to_i
+    person_id = gets.chomp.to_i
 
-    puts 'Rentals'
-    @rentals.each do |rental|
-      puts "Date: #{rental.date} Book: #{rental.book.title} by #{rental.book.author} " if rental.person.id == id_person
+    puts 'Rentals:'
+    @rentals.find_all { |rental| rental.person.id == person_id }.each do |rental|
+      puts "Date: #{rental.date} Book: #{rental.book.title} Person: #{rental.person.name}"
     end
   end
 end
