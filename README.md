@@ -73,6 +73,12 @@ puts student.play_hooky # prints "¯(ツ)/¯
 
 - [Your Name](https://github.com/your-username)
 
+-👤 **Cesar Alberto Valencia Aguilar**
+
+- GitHub: [https://github.com/cvalencia1991](https://github.com/cvalencia1991)
+- Twitter: [https://twitter.com/cvalenciaguilar](@cvalenciaguilar)
+- LinkedIn: [https://www.linkedin.com/in/cvalenciaguilar/](www.linkedin.com/in/cvalenciaguilar)
+
 ## 🔭 Future Features <a name="future-features"></a>
 
 - Add more methods and attributes to the Person and Student classes.
