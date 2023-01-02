@@ -71,7 +71,11 @@ puts student.play_hooky # prints "¯(ツ)/¯
 ```
 ## 👥 Authors <a name="authors"></a>
 
-- [Your Name](https://github.com/your-username)
+### 👤 Didier Peran Ganthier
+
+- GitHub: [@didierganthier](https://github.com/didierganthier)
+- Twitter: [@didierganthier_](https://twitter.com/didierganthier_)
+- LinkedIn: [Didier Peran Ganthier](https://linkedin.com/in/didierganthier)
 
 -👤 **Cesar Alberto Valencia Aguilar**
 
