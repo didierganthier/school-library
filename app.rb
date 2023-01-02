@@ -76,15 +76,11 @@ class App
   end
 
   def list_people
-    @person.each do |per|
-      puts "[#{per.class}] Name: #{per.name}, ID: #{per.id}, Age: #{per.age}"
-    end
+    @person.each { |per| puts "[#{per.class}] Name: #{per.name}, ID: #{per.id}, Age: #{per.age}" }
   end
 
   def list_books
-    @books.each do |book|
-      puts "Title: #{book.title}, Author: #{book.author}"
-    end
+    @books.each { |book| puts "Title: #{book.title}, Author: #{book.author}" }
   end
 
   def create_book
@@ -101,15 +97,14 @@ class App
 
   def create_rental
     puts 'Select a book from the following list by number '
-    @books.each_with_index do |book, index|
-      puts "#{index}) Title: #{book.title}, Author: #{book.author}"
-    end
+    @books.each_with_index { |book, index| puts "#{index}) Title: #{book.title}, Author: #{book.author}" }
     book_num = gets.chomp
     book_num = book_num.to_i
 
     puts 'Select a person from the following list by number (not id)'
     @person.each_with_index do |per, index|
-      puts "No: #{index}, [#{per.class}] Name: #{per.name}, ID: #{per.id}, Age: #{per.age}"
+      puts "No: #{index}, [#{per.class}] Name: #{per.name}, ID: #{per.id},
+    Age: #{per.age}"
     end
     person_num = gets.chomp
     person_num = person_num.to_i
@@ -121,14 +116,14 @@ class App
     puts 'Rental Created successfully 📝 '
   end
 
+  # List all rentals for a given person id
   def list_rentals
     print 'Id of person:'
-    id_person = gets.chomp
-    id_person = id_person.to_i
+    person_id = gets.chomp.to_i
 
-    puts 'Rentals'
-    @rentals.each do |rental|
-      puts "Date: #{rental.date} Book: #{rental.book.title} by #{rental.book.author} " if rental.person.id == id_person
+    puts 'Rentals:'
+    @rentals.find_all { |rental| rental.person.id == person_id }.each do |rental|
+      puts "Date: #{rental.date} Book: #{rental.book.title} Person: #{rental.person.name}"
     end
   end
 end

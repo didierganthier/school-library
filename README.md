@@ -71,7 +71,17 @@ puts student.play_hooky # prints "¯(ツ)/¯
 ```
 ## 👥 Authors <a name="authors"></a>
 
-- [Your Name](https://github.com/your-username)
+### 👤 Didier Peran Ganthier
+
+- GitHub: [@didierganthier](https://github.com/didierganthier)
+- Twitter: [@didierganthier_](https://twitter.com/didierganthier_)
+- LinkedIn: [Didier Peran Ganthier](https://linkedin.com/in/didierganthier)
+
+-👤 **Cesar Alberto Valencia Aguilar**
+
+- GitHub: [https://github.com/cvalencia1991](https://github.com/cvalencia1991)
+- Twitter: [https://twitter.com/cvalenciaguilar](@cvalenciaguilar)
+- LinkedIn: [https://www.linkedin.com/in/cvalenciaguilar/](www.linkedin.com/in/cvalenciaguilar)
 
 ## 🔭 Future Features <a name="future-features"></a>
 
