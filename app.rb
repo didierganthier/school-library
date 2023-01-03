@@ -16,15 +16,82 @@ ACTIONS = {
 }.freeze
 
 class App
-  def save_data
-    File.write('books.json', JSON.dump(@books))
-
-    File.open('people.json', 'a') do |f|
-      people_hashes = @person.map(&:to_json)
-      f.write(JSON.dump(people_hashes))
+  def write_json
+    persons = @person.each_with_index.map do |person, index|
+      { class: person.class, age: person.age, name: person.name,
+        specialization: (person.specialization if person.instance_of?(Teacher)),
+        parent_permission: person.parent_permission, index: index, id: person.id }
     end
 
-    File.write('rentals.json', JSON.dump(@rentals))
+    json_person = JSON.generate(persons)
+    File.write('person.json', json_person)
+
+    books = @books.each_with_index.map do |book, index|
+      {
+        title: book.title, author: book.author, index: index
+      }
+    end
+    json_books = JSON.generate(books)
+    File.write('books.json', json_books)
+
+    rentals = @rentals.each_with_index.map do |rental, _index|
+      {
+        date: rental.date, book_index: @books.index(rental.book),
+        person_index: @person.index(rental.person)
+      }
+    end
+
+    json_rentals = JSON.generate(rentals)
+    File.write('rentals.json', json_rentals)
+  end
+
+  def load_persons
+    return [] unless File.exist?('person.json')
+
+    file = File.open('person.json')
+    persons_read = File.read(file)
+    persons_json = JSON.parse(persons_read)
+    loaded_persons = []
+    persons_json.each do |person|
+      case person['class']
+      when 'Teacher'
+        loaded_persons << Teacher.new(person['age'], person['specialization'], person['name'])
+      when 'Student'
+        loaded_persons << Student.new(person['age'], person['name'], parent_permission: person['parent_permission'])
+      end
+    end
+    file.close
+    loaded_persons
+  end
+
+  def load_books
+    return [] unless File.exist?('books.json')
+
+    file = File.open('books.json')
+    books_read = File.read(file)
+    books_json = JSON.parse(books_read)
+    loaded_books = []
+
+    books_json.each do |book|
+      loaded_books << Book.new(book['title'], book['author'])
+    end
+    file.close
+    loaded_books
+  end
+
+  def load_rentals
+    return [] unless File.exist?('rentals.json')
+
+    file = File.open('rentals.json')
+    rentals_read = File.read(file)
+    rentals_json = JSON.parse(rentals_read)
+    loaded_rentals = []
+
+    rentals_json.each do |rental|
+      loaded_rentals << Rental.new(rental['date'], @person[rental['person_index']], @books[rental['book_index']])
+    end
+    file.close
+    loaded_rentals
   end
 
   def print_question
@@ -40,9 +107,9 @@ class App
   end
 
   def initialize
-    @books = []
-    @person = []
-    @rentals = []
+    @books = load_books
+    @person = load_persons
+    @rentals = load_rentals
   end
 
   def select_option
