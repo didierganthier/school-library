@@ -3,6 +3,7 @@ require_relative './student'
 require_relative './teacher'
 require_relative './book'
 require_relative './rental'
+require 'json'
 
 ACTIONS = {
   1 => :list_books,
@@ -15,6 +16,17 @@ ACTIONS = {
 }.freeze
 
 class App
+  def save_data
+    File.write('books.json', JSON.dump(@books))
+
+    File.open('people.json', 'a') do |f|
+      people_hashes = @person.map(&:to_json)
+      f.write(JSON.dump(people_hashes))
+    end
+
+    File.write('rentals.json', JSON.dump(@rentals))
+  end
+
   def print_question
     puts 'Welcome to School library App! 🏫📚'
     puts "Please choose an option by entering a number:

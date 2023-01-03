@@ -31,6 +31,15 @@ class Person < Nameable
     @name
   end
 
+  def to_json(*_args)
+    {
+      age: @age,
+      name: @name,
+      parent_permission: @parent_permission,
+      id: @id
+    }
+  end
+
   private
 
   def generate_id
