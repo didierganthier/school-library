@@ -1,10 +1,17 @@
-require'./rental'
+require './rental'
+require './person'
+require './book'
+require 'date'
 
 describe Rental do
-  context "testing rental" do
-   it 'Testing initialize method rental'  do
-     rental = Rental.new("2022-01-04", "didier","alfa")
-     expect(rental.book).to eq "alfa"
-   end
+  describe "#initialize" do
+    it "creates a rental with the given date, person, and book" do
+      book = Book.new("The Great Gatsby", "F. Scott Fitzgerald")
+      person = Person.new(30, "John Smith")
+      rental = Rental.new(Date.today, person, book)
+      expect(rental.date).to eq(Date.today)
+      expect(rental.person).to eq(person)
+      expect(rental.book).to eq(book)
+    end
   end
 end
