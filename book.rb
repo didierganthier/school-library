@@ -13,5 +13,5 @@ class Book
   def add_rental(person)
     rental = Rental.new(Date.today, person, self)
     @rentals.push(rental)
-  end  
+  end
 end

@@ -20,7 +20,7 @@ class Person < Nameable
   def add_rental(book)
     rental = Rental.new(Date.today, self, book)
     @rentals.push(rental)
-  end  
+  end
 
   def can_use_services?
     of_age? || @parent_permission

@@ -12,21 +12,21 @@ describe Person do
       expect(person.name).to eq("John Smith")
       expect(person.age).to eq(30)
     end
-  
+
     it "creates a person with the given name and age and parent permission" do
       person = Person.new(30, "John Smith", parent_permission: true)
       expect(person.name).to eq("John Smith")
       expect(person.age).to eq(30)
       expect(person.parent_permission).to be true
     end
-  
+
     it "creates a person with the given name and age and default parent permission" do
       person = Person.new(30, "John Smith")
       expect(person.name).to eq("John Smith")
       expect(person.age).to eq(30)
       expect(person.parent_permission).to be true
     end
-  
+
     it "creates a person with a unique ID" do
       person1 = Person.new(30, "John Smith")
       person2 = Person.new(30, "John Smith")
@@ -34,4 +34,3 @@ describe Person do
     end
   end
 end
-  
