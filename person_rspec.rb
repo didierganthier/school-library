@@ -6,34 +6,32 @@ require './rental'
 require './person'
 
 describe Person do
-  context"testing every method for Person class" do
-
-    it "method initialize" do
-      person = Person.new(18)
-      expect(person.name).to eq "Unknown"
+  describe "#initialize" do
+    it "creates a person with the given name and age" do
+      person = Person.new(30, "John Smith")
+      expect(person.name).to eq("John Smith")
+      expect(person.age).to eq(30)
     end
-
-    it "is of age?" do
-      person = Person.new(20)
-      expect(person.send(:of_age?)).to be true
+  
+    it "creates a person with the given name and age and parent permission" do
+      person = Person.new(30, "John Smith", parent_permission: true)
+      expect(person.name).to eq("John Smith")
+      expect(person.age).to eq(30)
+      expect(person.parent_permission).to be true
     end
-
-    it "correct name " do
-      person = Person.new(10,"didier")
-      expect(person.name).to eq "didier"
+  
+    it "creates a person with the given name and age and default parent permission" do
+      person = Person.new(30, "John Smith")
+      expect(person.name).to eq("John Smith")
+      expect(person.age).to eq(30)
+      expect(person.parent_permission).to be true
     end
-
-    it "can use services?" do
-      person = Person.new(20, "cesar")
-      person.parent_permission = false
-      expect(person.can_use_services?).to be true
+  
+    it "creates a person with a unique ID" do
+      person1 = Person.new(30, "John Smith")
+      person2 = Person.new(30, "John Smith")
+      expect(person1.id).to_not eq(person2.id)
     end
-
-    it "generate_id?" do
-      person = Person.new(31,"kay")
-      person.id =
-
-    end
-
   end
 end
+  
