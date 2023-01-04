@@ -69,6 +69,14 @@ puts student.classroom # prints "Classroom 1"
 puts student.can_use_services? # prints true
 puts student.play_hooky # prints "¯(ツ)/¯
 ```
+
+### Tests <a name="tests"></a>
+
+To run the tests, you can use the following code:
+```
+  rspec *_rspec.rb
+```
+
 ## 👥 Authors <a name="authors"></a>
 
 ### 👤 Didier Peran Ganthier
